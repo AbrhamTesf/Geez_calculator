@@ -1,3 +1,41 @@
+def function(x,y): #definded what a function is
+    y = function(x)
+    return y
+
+def sequence(x, n):
+    sum = 0
+    if n <= 0:
+        raise ValueError("n must be a positive integer.")
+    for i in range(n):
+        sum += x(i)
+
+    return sum
+
+
+def check_for_sequence(function):
+    n = 1
+    while n<1:
+        print("Please enter a valid sequence")
+        n = int(input("Enter a positive integer for the sequence length: "))
+    return [sum(function(i)) for i in range(n)]
+
+
+def summation(interval,function):
+    """
+    A simple numerical summation using the trapezoidal rule.
+    :param interval: A tuple (a, b) representing the interval of summation.
+    :param function: A callable function to sum over the interval.
+    :return: The approximate value of the summation.
+    """
+    a, b = interval
+    n = 1000  # Number of subintervals
+    h = (b - a) / n  # Width of each subinterval
+    total = 0.5 * (function(a) + function(b))  # Start with the endpoints
+    for i in range(1, n):
+        total += function(a + i * h)  # Add the value at each subinterval
+    return total * h    
+
+
 def integration(interval, function):
     """
     A simple numerical integration using the trapezoidal rule.
